@@ -9,6 +9,8 @@ import { Root } from "./components/Root";
 import { Home } from "./components/Home";
 import { User } from "./components/User";
 import SignUp from "./containers/signup/signup-page";
+import SignIn from "./containers/signin/signin-page";
+import Dashboard from "./containers/dashboard/dashboard-container";
 
 const store = createStore(allReducers);
 
@@ -19,6 +21,8 @@ var routes = (
             <Route path={"user"} component={User} />
             <Route path={"home"} component={Home} />
             <Route path={"signup"} component={SignUp} />
+            <Route path={"signin"} component={SignIn} />
+            <Route path={"dashboard"} component={Dashboard} />
         </Route>
     </Router>
 );
