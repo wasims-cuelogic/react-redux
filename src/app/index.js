@@ -10,7 +10,7 @@ import { Home } from "./components/Home";
 import { User } from "./components/User";
 import SignUp from "./containers/signup/signup-page";
 import SignIn from "./containers/signin/signin-page";
-import Dashboard from "./containers/dashboard/dashboard-container";
+import DashboardComponent from "./components/dashboard/dashboard-component";
 
 const store = createStore(allReducers);
 
@@ -22,7 +22,7 @@ var routes = (
             <Route path={"home"} component={Home} />
             <Route path={"signup"} component={SignUp} />
             <Route path={"signin"} component={SignIn} />
-            <Route path={"dashboard"} component={Dashboard} />
+            <Route path={"dashboard"} component={DashboardComponent} />
         </Route>
     </Router>
 );
