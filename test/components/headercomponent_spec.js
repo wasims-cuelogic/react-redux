@@ -12,5 +12,4 @@ describe("Component: Header", () => {
             ).length
         ).to.equal(1);
     });
-
 });

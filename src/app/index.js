@@ -1,8 +1,9 @@
 import React from "react";
 import { render } from "react-dom";
 import { Router, Route, browserHistory, IndexRoute } from "react-router";
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from "react-redux";
+import thunk from 'redux-thunk';
 import allReducers from "./reducers"
 
 import { Root } from "./components/Root";
@@ -12,7 +13,7 @@ import SignUp from "./containers/signup/signup-page";
 import SignIn from "./containers/signin/signin-page";
 import DashboardComponent from "./components/dashboard/dashboard-component";
 
-const store = createStore(allReducers);
+const store = createStore(allReducers,applyMiddleware(thunk));
 
 var routes = (
     <Router history={browserHistory}>

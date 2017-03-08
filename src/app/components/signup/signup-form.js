@@ -36,7 +36,7 @@ class SignUpForm extends Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <h1>Join Our Community</h1>
+                <h1>Sign Up</h1>
                 <div className="form-group">
                     <label className="control-label">Username</label>
                     <input
