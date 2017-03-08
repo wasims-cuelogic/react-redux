@@ -1,15 +1,24 @@
-import React from "react";
-import { shallow } from "enzyme";
-import { expect } from "chai";
+import {
+    React,
+    sinon,
+    assert,
+    expect,
+    mount,
+    shallow,
+    TestUtils,
+    configureStore
+} from '../helpers/test_helper';
 import { Header } from "../../src/app/components/Header";
 
 describe("Component: Header", () => {
 
-    it("renders without exploding", () => {
-        expect(
-            shallow(
-                <Header />
-            ).length
-        ).to.equal(1);
+    const wrapper = shallow(<Header />);
+
+    it('renders as a <nav>', () => {
+        expect(wrapper.type()).to.eql('nav');
+    });    
+
+    it('contains a header explaining the app', () => {
+        expect(wrapper.find('.container-fluid')).to.have.length(1);
     });
 });

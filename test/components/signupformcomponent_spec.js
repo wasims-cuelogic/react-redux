@@ -1,7 +1,12 @@
-import React from "react";
-import { mount, shallow } from "enzyme";
-import { expect } from "chai";
-import sinon from "sinon";
+import {
+    React,
+    sinon,
+    assert,
+    expect,
+    mount, 
+    shallow,
+    TestUtils
+} from '../helpers/test_helper';
 import SignUpForm from "../../src/app/components/signup/signup-form";
 
 
@@ -12,6 +17,7 @@ describe("Component: SignUpForm", (prop) => {
     let textField;
     let selectField;
     let sandbox;
+    let signupForm;
 
     before(() => {
         sandbox = sinon.sandbox.create();
@@ -23,6 +29,7 @@ describe("Component: SignUpForm", (prop) => {
         wrapper = shallow(<SignUpForm  {...props} />);
         textField = wrapper.find("input");
         selectField = wrapper.find("select");
+        signupForm = wrapper.find("#frm-signup");
     });
 
     afterEach(function () {
@@ -36,5 +43,13 @@ describe("Component: SignUpForm", (prop) => {
     it("should generate a signup form", () => {
         expect(textField).to.have.length(4);
         expect(selectField).to.have.length(1);
-    })
+    });
+
+    // it("Submit clicks, submit form", () => {
+    //     expect(signupForm.props().onSubmit).to.be.exist;
+    //     expect(signupForm.props().onSubmit).to.eql(props.submitHandle);
+    //     raisedButton.simulate("click");
+    //     props.onSubmit();
+    //     sinon.assert.calledOnce(props.onSubmit);
+    // });
 });

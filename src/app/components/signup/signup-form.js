@@ -24,7 +24,17 @@ class SignUpForm extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.props.userSignupRequest(this.state);
+        this.props.userSignupRequest(this.state).then(() => {
+            //dispatch(getStuffSuccess(response))
+            console.log("Success ");
+        },
+            ({ data }) => {
+                console.log("Error " + data);
+            })
+            .catch((err) => {
+                console.log("Error " + err);
+                //dispatch(getStuffError(err))
+            })
     }
 
 
@@ -35,7 +45,7 @@ class SignUpForm extends Component {
         );
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} id="frm-signup">
                 <h1>Sign Up</h1>
                 <div className="form-group">
                     <label className="control-label">Username</label>

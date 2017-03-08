@@ -4,7 +4,7 @@
   "description": "Some basic react redux",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r test/helpers/browser.js test/**/*_spec.js*",
+    "test": "NODE_ENV=test mocha -r test/helpers/browser.js test/**/*_spec.js*",
     "start": "npm run build",
     "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot --port 3003 --history-api-fallback",
     "build-prod": "webpack -p && cp src/index.html dist/index.html"
@@ -52,10 +52,13 @@
     "jest": "^19.0.2",
     "jsdom": "^9.11.0",
     "mocha": "^3.2.0",
+    "mocha-babel": "^3.0.3",
+    "node-jsdom": "^3.1.5",
     "react-addons-test-utils": "^15.4.2",
     "react-test-renderer": "^15.4.2",
     "redux-mock-store": "^1.2.2",
     "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   }

@@ -1,7 +1,14 @@
-import React from "react";
-import { shallow, mount } from "enzyme";
-import configureStore from 'redux-mock-store';
-import { expect } from "chai";
+import {
+    React,
+    sinon,
+    assert,
+    expect,
+    mount, 
+    shallow,
+    TestUtils,
+    configureStore
+} from '../helpers/test_helper';
+
 import { User } from "../../src/app/components/User";
 
 

@@ -28,7 +28,7 @@ class SignInForm extends Component {
     render() {        
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} id="frm-signin">
                 <h1>Sign In</h1>                
 
                 <div className="form-group">
