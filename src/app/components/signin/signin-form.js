@@ -1,68 +1,49 @@
 import React, { Component } from 'react';
-import timezones from '../../data/timezones';
-import map from 'lodash/map';
+import classnames from 'classnames';
 
+export const SignInForm = (props) => {        
 
-class SignInForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: ''
-        }
-
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-        this.props.userSignupRequest(this.state);
-    }
-
-
-    render() {        
-
-        return (
-            <form onSubmit={this.onSubmit} id="frm-signin">
+    return (
+        <div>      
+            {/*{console.log("Props ",props)}      */}
+            <form onSubmit={props.submitHandle} id="frm-signin">
                 <h1>Sign In</h1>                
 
-                <div className="form-group">
+                <div className={classnames("form-group",{'has-error':props.formError.email})}>
                     <label className="control-label">Email</label>
                     <input
                         type="text"
                         name="email"
                         className="form-control"
                         placeholder="Enter email"
-                        value={this.state.email}
-                        onChange={this.onChange} />
+                        onChange={props.handleChange} />
+                        {(props.formError && props.formError.email)  && <span className="help-block">{props.formError.email}</span>}
                 </div>
 
-                <div className="form-group">
+                <div className={classnames("form-group",{'has-error':props.formError.password})}>
                     <label className="control-label">Password</label>
                     <input
                         type="password"
                         name="password"
                         className="form-control"
                         placeholder="Enter password"
-                        value={this.state.password}
-                        onChange={this.onChange} />
+                        onChange={props.handleChange} />
+
+                        {(props.formError && props.formError.password)  && <span className="help-block">{props.formError.password}</span>}
                 </div>
 
+                
                 <div className="form-group">
-                    <button className="btn btn-primary btn-lg" > Submit </button>
+                    <button className="btn btn-primary btn-lg" > Sign In </button>
                 </div>
             </form>
-        );
-    }
+        </div>
+    );
+
 }
+
 
 SignInForm.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
-}
-
-export default SignInForm;
+    submitHandle: React.PropTypes.func,
+    handleChange: React.PropTypes.func,
+};

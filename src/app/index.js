@@ -24,7 +24,12 @@ import DashboardComponent from "./components/dashboard/dashboard-component";
 
 const initialState = {
     signupData: {
-         signupData: { data: [] },
+         signupFormData: {},
+         info: {},
+         isPropUpdate:false
+    },
+    signinData: {
+         signinFormData: {},
          info: {},
          isPropUpdate:false
     }

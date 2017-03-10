@@ -10,10 +10,32 @@ export const SignUpForm = (props) => {
     );    
 
     return (
-        <div>
-            {/*{console.log("props123==>", props)}*/}
+        <div>      
+            {/*{console.log("Props ",props)}      */}
             <form onSubmit={props.submitHandle} id="frm-signup">
                 <h1>Sign Up</h1>
+                <div className={classnames("form-group",{'has-error':props.formError.fname})}>
+                    <label className="control-label">First Name</label>
+                    <input
+                        type="text"
+                        name="fname"
+                        className="form-control"
+                        placeholder="Enter First Name"
+                        onChange={props.handleChange} />
+
+                        {(props.formError && props.formError.fname)  && <span className="help-block">{props.formError.fname}</span>}
+                </div>
+                <div className={classnames("form-group",{'has-error':props.formError.lname})}>
+                    <label className="control-label">Last Name</label>
+                    <input
+                        type="text"
+                        name="lname"
+                        className="form-control"
+                        placeholder="Enter Last Name"
+                        onChange={props.handleChange} />
+
+                        {(props.formError && props.formError.lname)  && <span className="help-block">{props.formError.lname}</span>}
+                </div>
                 <div className={classnames("form-group",{'has-error':props.formError.username})}>
                     <label className="control-label">Username</label>
                     <input
@@ -22,6 +44,8 @@ export const SignUpForm = (props) => {
                         className="form-control"
                         placeholder="Enter username"
                         onChange={props.handleChange} />
+
+                        {(props.formError && props.formError.username)  && <span className="help-block">{props.formError.username}</span>}
                 </div>
 
                 <div className={classnames("form-group",{'has-error':props.formError.email})}>
@@ -35,7 +59,7 @@ export const SignUpForm = (props) => {
                         {(props.formError && props.formError.email)  && <span className="help-block">{props.formError.email}</span>}
                 </div>
 
-                <div className="form-group">
+                <div className={classnames("form-group",{'has-error':props.formError.password})}>
                     <label className="control-label">Password</label>
                     <input
                         type="password"
@@ -43,9 +67,11 @@ export const SignUpForm = (props) => {
                         className="form-control"
                         placeholder="Enter password"
                         onChange={props.handleChange} />
+
+                        {(props.formError && props.formError.password)  && <span className="help-block">{props.formError.password}</span>}
                 </div>
 
-                <div className="form-group">
+                <div className={classnames("form-group",{'has-error':props.formError.password})}>
                     <label className="control-label">Password Confirmation</label>
                     <input
                         type="password"
@@ -53,6 +79,8 @@ export const SignUpForm = (props) => {
                         className="form-control"
                         placeholder="Re-enter password "
                         onChange={props.handleChange} />
+
+                        {(props.formError && props.formError.password)  && <span className="help-block">{props.formError.password}</span>}
                 </div>
 
                 <div className="form-group">

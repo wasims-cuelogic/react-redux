@@ -8,21 +8,22 @@ export class SignUpPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            signupData: { data: [] },
-            username: '',
-            email: '',
-            password: '',
-            passwordConfirmation: '',
-            timezone: '',
+            signupFormData: {},            
             info: {},
             formErrors: {}
         }
-
-
     }
 
-    handleChange = (event) => {        
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
+
+        let valObj = {};
+        valObj[event.target.name] = event.target.value;
+        this.setState(
+            Object.assign({}, this.state, {
+                signupFormData: Object.assign({}, this.state.signupFormData, valObj)
+            })
+        )
     }
 
     handleSubmit = (event) => {
@@ -32,11 +33,11 @@ export class SignUpPage extends React.Component {
             })
         )
         event.preventDefault();
-        this.props.onSubmit(this.state);
+        this.props.onSubmit(this.state.signupFormData);
     }
 
 
-    componentWillUpdate(nextProps, nextState) {        
+    componentWillUpdate(nextProps, nextState) {
         nextProps.signupData && (nextProps.isPropUpdate === true) ?
             this.setState(
                 Object.assign({}, this.state, {
@@ -48,7 +49,7 @@ export class SignUpPage extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-4 col-md-offset-4">
+                <div className="col-md-6 col-md-offset-2">
                     <SignUpForm
                         submitHandle={this.handleSubmit}
                         handleChange={this.handleChange}
