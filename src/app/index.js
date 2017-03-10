@@ -26,7 +26,8 @@ const initialState = {
     signupData: {
          signupFormData: {},
          info: {},
-         isPropUpdate:false
+         isPropUpdate:false,
+         isLoading: false
     },
     signinData: {
          signinFormData: {},

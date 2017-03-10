@@ -41,7 +41,7 @@ describe("Component: SignUpForm", (prop) => {
     });
 
     it("should generate a signup form", () => {
-        expect(textField).to.have.length(4);
+        expect(textField).to.have.length(6);
         expect(selectField).to.have.length(1);
     });
 

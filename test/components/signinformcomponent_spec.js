@@ -29,8 +29,7 @@ describe('Component: SignInForm', () => {
                     errorMessage: "Password must be between 1 and 72 characters long"
                 }
             }
-        },
-        userSignupRequest: () => { }
+        }        
 
     }
 

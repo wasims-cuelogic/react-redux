@@ -8,9 +8,9 @@ export class SignUpPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            signupFormData: {},            
+            signupFormData: {},
             info: {},
-            formErrors: {}
+            formErrors: {}            
         }
     }
 
@@ -27,13 +27,13 @@ export class SignUpPage extends React.Component {
     }
 
     handleSubmit = (event) => {
-        this.setState(
-            Object.assign({}, this.state, {
-                formErrors: {}
-            })
-        )
         event.preventDefault();
+
+        this.setState(
+            Object.assign({}, this.state, { formErrors: {}})
+        )        
         this.props.onSubmit(this.state.signupFormData);
+
     }
 
 
@@ -41,10 +41,10 @@ export class SignUpPage extends React.Component {
         nextProps.signupData && (nextProps.isPropUpdate === true) ?
             this.setState(
                 Object.assign({}, this.state, {
-                    formErrors: nextProps.signupData.info
+                    formErrors: nextProps.signupData.info                    
                 })
             ) : ""
-    }
+       }
 
     render() {
         return (
@@ -54,6 +54,7 @@ export class SignUpPage extends React.Component {
                         submitHandle={this.handleSubmit}
                         handleChange={this.handleChange}
                         formError={this.props.signupData.info}
+                        isLoading={this.props.signupData.isLoading}
                     />
                 </div>
             </div>
@@ -77,56 +78,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);
-
-/*export default connect(mapStateToProps, mapDispatchToProps)(HostPage);
-
-class SignUpPage extends Component {
-    render() {
-
-        const { userSignupRequest } = this.props;
-
-        return (
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-                    <SignUpForm userSignupRequest={userSignupRequest} />
-                </div>
-            </div>
-        );
-    }
-}
-
-SignUpPage.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
-}*/
-
-//export default connect((state) => { return {} }, { userSignupRequest })(SignUpPage);
-
-
-
-
-
-/*import React, { Component } from 'react';
-import SignUpForm from '../../components/signup/signup-form';
-import { connect } from 'react-redux';
-import { userSignupRequest } from '../../actions/signupActions.js';
-
-class SignUpPage extends Component {
-    render() {
-
-        const { userSignupRequest } = this.props;
-
-        return (
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-                    <SignUpForm userSignupRequest={userSignupRequest} />
-                </div>
-            </div>
-        );
-    }
-}
-
-SignUpPage.propTypes = {
-    userSignupRequest: React.PropTypes.func.isRequired
-}
-
-export default connect((state) => { return {} }, { userSignupRequest })(SignUpPage);*/

@@ -4,7 +4,7 @@ import axios from 'axios';
 export const userSignupRequest = (userData) => {    
 
     return (dispatch, getState) => {
-
+        
         dispatch({
             type: actionTypes.SIGNUP_PAGE_SUBMITTED
         })
