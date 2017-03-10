@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userSignupRequest } from '../../actions/signupActions.js';
 import { SignUpForm } from '../../components/signup/signup-form';
+import { browserHistory } from 'react-router';
 
 export class SignUpPage extends React.Component {
 
@@ -10,7 +11,7 @@ export class SignUpPage extends React.Component {
         this.state = {
             signupFormData: {},
             info: {},
-            formErrors: {}            
+            formErrors: {}
         }
     }
 
@@ -30,10 +31,10 @@ export class SignUpPage extends React.Component {
         event.preventDefault();
 
         this.setState(
-            Object.assign({}, this.state, { formErrors: {}})
-        )        
+            Object.assign({}, this.state, { formErrors: {} })
+        )
         this.props.onSubmit(this.state.signupFormData);
-
+        //browserHistory.push("/dashboard");
     }
 
 
@@ -41,10 +42,10 @@ export class SignUpPage extends React.Component {
         nextProps.signupData && (nextProps.isPropUpdate === true) ?
             this.setState(
                 Object.assign({}, this.state, {
-                    formErrors: nextProps.signupData.info                    
+                    formErrors: nextProps.signupData.info
                 })
             ) : ""
-       }
+    }
 
     render() {
         return (
