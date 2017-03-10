@@ -25,6 +25,8 @@
   "homepage": "https://github.com/wasims-cuelogic/react-redux#readme",
   "dependencies": {
     "axios": "^0.15.3",
+    "classnames": "^2.2.5",
+    "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

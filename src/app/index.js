@@ -4,6 +4,7 @@ import { Router, Route, browserHistory, IndexRoute } from "react-router";
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
+import Immutable from "immutable";
 import allReducers from "./reducers"
 
 import { Root } from "./components/Root";
@@ -13,7 +14,29 @@ import SignUp from "./containers/signup/signup-page";
 import SignIn from "./containers/signin/signin-page";
 import DashboardComponent from "./components/dashboard/dashboard-component";
 
-const store = createStore(allReducers,applyMiddleware(thunk));
+// const initialState = Immutable.Map({
+//     signupData: {
+//          signupData: { data: [] },
+//          info: {}
+//     }
+   
+// });
+
+const initialState = {
+    signupData: {
+         signupData: { data: [] },
+         info: {},
+         isPropUpdate:false
+    }
+   
+};
+
+const store = createStore(
+    allReducers,
+    initialState,
+    applyMiddleware(thunk)
+);
+
 
 var routes = (
     <Router history={browserHistory}>

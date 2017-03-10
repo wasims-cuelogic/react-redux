@@ -1,7 +1,28 @@
+import * as actionTypes from "../constants/actionTypes";
 import axios from 'axios';
 
-export function userSignupRequest(userData) {
-    return dispatch => {
-        return axios.post('http://localhost:3000/api/users', userData);
+export const userSignupRequest = (userData) => {
+
+    console.log("In actions ", userData)
+
+    return (dispatch, getState) => {
+
+        dispatch({
+            type: actionTypes.SIGNUP_PAGE_SUBMITTED
+        })
+
+        return axios.post("http://localhost:3001/api/users", userData)
+            .then(response => {
+                dispatch({
+                    type: actionTypes.RECORD_ADD_SUCCESS,
+                    data: response
+                });
+            })
+            .catch(error => {           
+                dispatch({
+                    type: actionTypes.RECORD_ADD_FAILURE,
+                    error: error.response.data
+                });
+            });
     }
 }
