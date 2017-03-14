@@ -13,7 +13,7 @@ export const SignInForm = (props) => {
                     <label className="control-label">Email</label>
                     <input
                         type="text"
-                        name="email"
+                        name="username"
                         className="form-control"
                         placeholder="Enter email"
                         onChange={props.handleChange} />

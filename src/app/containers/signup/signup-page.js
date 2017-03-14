@@ -56,6 +56,7 @@ export class SignUpPage extends React.Component {
                         handleChange={this.handleChange}
                         formError={this.props.signupData.info}
                         isLoading={this.props.signupData.isLoading}
+                        recordAdded={this.props.signupData.recordAdded}
                     />
                 </div>
             </div>

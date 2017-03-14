@@ -1,25 +1,26 @@
 import * as actionTypes from "../constants/actionTypes";
 import axios from 'axios';
 
-export const userSigninRequest = (userData) => {    
+export const userSigninRequest = (userData) => {
 
     return (dispatch, getState) => {
 
         dispatch({
-            type: actionTypes.SIGNIN_PAGE_SUBMITTED
+            type: actionTypes.LOGIN_REQUEST
         })
 
-        return axios.post("http://localhost:3001/api/users/authenticate", userData)
+        axios.post("http://localhost:3001/api/users/authenticate", userData)
             .then(response => {
+                console.log("Success",response)
                 dispatch({
-                    type: actionTypes.RECORD_ADD_SUCCESS,
-                    data: response
+                    type: actionTypes.LOGIN_SUCCESS,
+                    data: response.id_token
                 });
             })
-            .catch(error => {   
-                console.log("errors ", error.response.data)        
+            .catch((error) => {
+                console.log("Error ",error.message)
                 dispatch({
-                    type: actionTypes.RECORD_ADD_FAILURE,
+                    type: actionTypes.LOGIN_FAILURE,
                     error: error.response.data
                 });
             });

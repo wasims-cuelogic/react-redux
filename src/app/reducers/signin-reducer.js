@@ -1,23 +1,25 @@
 import * as actionTypes from "../constants/actionTypes.js";
 
-export function signinInfo(state = {}, action) {    
+export function signinInfo(state = {}, action) {
     switch (action.type) {
-        case actionTypes.SIGNUP_PAGE_SUBMITTED:
+        case actionTypes.LOGIN_REQUEST:
             return Object.assign({}, state, {
-                isPropUpdate:false,
+                isFetching: true,
+                isAuthenticated: false
             });
-        case actionTypes.RECORD_ADD_SUCCESS:        
+        case actionTypes.LOGIN_SUCCESS:        
             return Object.assign({}, state, {
-                info: action.payload,
-                data:state.data,
-                isPropUpdate:false
-            }); 
-        case actionTypes.RECORD_ADD_FAILURE:        
+                isFetching: false,
+                isAuthenticated: true,
+                id_token: data.id_token
+            });
+        case actionTypes.LOGIN_FAILURE:
             return Object.assign({}, state, {
-                info: action.error.message,
-                data:state.data,
-                isPropUpdate:true
-            });       
+                type: LOGIN_FAILURE,
+                isFetching: false,
+                isAuthenticated: false,
+                message: state.errors
+            });
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Router, Route, browserHistory, IndexRoute } from "react-router";
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
 import Immutable from "immutable";
@@ -19,28 +19,33 @@ import DashboardComponent from "./components/dashboard/dashboard-component";
 //          signupData: { data: [] },
 //          info: {}
 //     }
-   
+
 // });
 
 const initialState = {
     signupData: {
-         signupFormData: {},
-         info: {},
-         isPropUpdate:false,
-         isLoading: false
+        signupFormData: {},
+        info: {},
+        isPropUpdate: false,
+        isLoading: false,
+        recordAdded: false
     },
     signinData: {
-         signinFormData: {},
-         info: {},
-         isPropUpdate:false
+        signinFormData: {},
+        info: {},
+        isPropUpdate: false
     }
-   
+
 };
 
 const store = createStore(
     allReducers,
     initialState,
-    applyMiddleware(thunk)
+    compose(
+        applyMiddleware(thunk),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+
 );
 
 

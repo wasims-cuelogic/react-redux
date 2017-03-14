@@ -5,7 +5,8 @@ export function signupInfo(state = {}, action) {
         case actionTypes.SIGNUP_PAGE_SUBMITTED:
             return Object.assign({}, state, {
                 isPropUpdate: false,
-                isLoading: true
+                isLoading: true,
+                recordAdded:false
             });
         case actionTypes.RECORD_ADD_SUCCESS:
             return Object.assign({}, state, {
@@ -13,6 +14,7 @@ export function signupInfo(state = {}, action) {
                 data: state.data,
                 isPropUpdate: false,
                 isLoading: false,
+                recordAdded:true
             });
         case actionTypes.RECORD_ADD_FAILURE:
             return Object.assign({}, state, {
@@ -20,6 +22,7 @@ export function signupInfo(state = {}, action) {
                 data: state.data,
                 isPropUpdate: true,
                 isLoading: false,
+                recordAdded:false
             });
         default:
             return state;

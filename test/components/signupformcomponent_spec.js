@@ -3,11 +3,11 @@ import {
     sinon,
     assert,
     expect,
-    mount, 
+    mount,
     shallow,
     TestUtils
 } from '../helpers/test_helper';
-import SignUpForm from "../../src/app/components/signup/signup-form";
+import { SignUpForm } from "../../src/app/components/signup/signup-form";
 
 
 describe("Component: SignUpForm", (prop) => {
@@ -18,17 +18,24 @@ describe("Component: SignUpForm", (prop) => {
     let selectField;
     let sandbox;
     let signupForm;
+    let submitButton;
 
     before(() => {
         sandbox = sinon.sandbox.create();
 
         props = {
-            userSignupRequest: sandbox.spy()
+            formError: {},
+            isLoading: true,
+            recordAdded: false,
+            userSignupRequest: sandbox.spy(),
+            handleChange: () => { },
+            submitHandle: sandbox.spy()
         }
 
         wrapper = shallow(<SignUpForm  {...props} />);
-        textField = wrapper.find("input");
+        textField = wrapper.find("TextFieldGroup");
         selectField = wrapper.find("select");
+        submitButton = wrapper.find("button");
         signupForm = wrapper.find("#frm-signup");
     });
 
@@ -45,11 +52,11 @@ describe("Component: SignUpForm", (prop) => {
         expect(selectField).to.have.length(1);
     });
 
-    // it("Submit clicks, submit form", () => {
-    //     expect(signupForm.props().onSubmit).to.be.exist;
-    //     expect(signupForm.props().onSubmit).to.eql(props.submitHandle);
-    //     raisedButton.simulate("click");
-    //     props.onSubmit();
-    //     sinon.assert.calledOnce(props.onSubmit);
-    // });
+    it("Submit clicks, submit form", () => {
+        expect(signupForm.props().onSubmit).to.be.exist;
+        expect(signupForm.props().onSubmit).to.eql(props.submitHandle);
+        submitButton.simulate("click");
+        props.submitHandle();
+        sinon.assert.calledOnce(props.submitHandle);
+    });
 });
