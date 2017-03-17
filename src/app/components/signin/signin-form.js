@@ -9,27 +9,26 @@ export const SignInForm = (props) => {
             <form onSubmit={props.submitHandle} id="frm-signin">
                 <h1>Sign In</h1>                
 
-                <div className={classnames("form-group",{'has-error':props.formError.email})}>
-                    <label className="control-label">Email</label>
+                <div className="form-group">
+                    <label className="control-label">Username</label>
                     <input
                         type="text"
                         name="username"
                         className="form-control"
-                        placeholder="Enter email"
-                        onChange={props.handleChange} />
-                        {(props.formError && props.formError.email)  && <span className="help-block">{props.formError.email}</span>}
+                        placeholder="Enter Username"
+                        value={props.username}
+                        onChange={props.handleChange} />                        
                 </div>
 
-                <div className={classnames("form-group",{'has-error':props.formError.password})}>
+                <div className="form-group">
                     <label className="control-label">Password</label>
                     <input
                         type="password"
                         name="password"
                         className="form-control"
                         placeholder="Enter password"
-                        onChange={props.handleChange} />
-
-                        {(props.formError && props.formError.password)  && <span className="help-block">{props.formError.password}</span>}
+                        value={props.password}
+                        onChange={props.handleChange} />                        
                 </div>
 
                 

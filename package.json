@@ -6,8 +6,13 @@
   "scripts": {
     "test": "NODE_ENV=test mocha -r test/helpers/browser.js test/**/*_spec.js*",
     "start": "npm run build",
-    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot --port 3003 --history-api-fallback",
-    "build-prod": "webpack -p && cp src/index.html dist/index.html"
+    "build-prod": "webpack -p && cp src/index.html dist/index.html",
+    "clean-public": "npm run remove-public && mkdir public",
+    "remove-public": "node_modules/.bin/rimraf ./public",
+    "build:html": "babel-node tools/buildHtml.js",
+    "prebuild": "npm-run-all clean-public lint build:html",
+    "build": "babel-node tools/build.js",
+    "postbuild": "babel-node tools/publicServer.js"
   },
   "repository": {
     "type": "git",
@@ -25,10 +30,14 @@
   "homepage": "https://github.com/wasims-cuelogic/react-redux#readme",
   "dependencies": {
     "axios": "^0.15.3",
+    "cheerio": "^0.22.0",
     "classnames": "^2.2.5",
+    "colors": "^1.1.2",
+    "compression": "^1.6.2",
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
+    "react-cookie": "^1.0.4",
     "react-dom": "^15.4.2",
     "react-redux": "^4.4.5",
     "react-router": "^3.0.2",
@@ -57,6 +66,7 @@
     "mocha-babel": "^3.0.3",
     "nock": "^9.0.9",
     "node-jsdom": "^3.1.5",
+    "npm-run-all": "^4.0.2",
     "proxyquire": "^1.7.11",
     "react-addons-test-utils": "^15.4.2",
     "react-test-renderer": "^15.4.2",

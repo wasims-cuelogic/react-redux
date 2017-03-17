@@ -12,7 +12,8 @@ import { Home } from "./components/Home";
 import { User } from "./components/User";
 import SignUp from "./containers/signup/signup-page";
 import SignIn from "./containers/signin/signin-page";
-import DashboardComponent from "./components/dashboard/dashboard-component";
+import DashboardComponent from "./containers/dashboard/dashboard-container";
+import RequireAuth from "./components/auth/require-auth"
 
 // const initialState = Immutable.Map({
 //     signupData: {
@@ -30,11 +31,12 @@ const initialState = {
         isLoading: false,
         recordAdded: false
     },
-    signinData: {
-        signinFormData: {},
-        info: {},
-        isPropUpdate: false
-    }
+    // signinData: {
+    //     signinFormData: {},
+    //     info: {},
+    //     isPropUpdate: false
+    // },
+    auth: { error: '', message: '', content: '', authenticated: false, user: {} }
 
 };
 
@@ -45,7 +47,6 @@ const store = createStore(
         applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f
     )
-
 );
 
 
@@ -61,6 +62,15 @@ var routes = (
         </Route>
     </Router>
 );
+
+function requireAuth(nextState, replace) {    
+    if (!sessionStorage.session) {
+        replace({
+            pathname: '/signin',
+            state: { nextPathname: nextState.location.pathname }
+        })
+    }
+}
 
 class App extends React.Component {
     render() {

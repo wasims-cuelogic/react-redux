@@ -12,7 +12,7 @@ export const SignUpForm = (props) => {
 
     return (
         <div>
-            {/*{console.log("Props ",props)}      */}
+            {/*{console.log("Props ",props) }      */}
             <form onSubmit={props.submitHandle} id="frm-signup">
                 <h1>Sign Up</h1>
 

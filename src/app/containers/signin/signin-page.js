@@ -2,48 +2,53 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userSigninRequest } from '../../actions/signinActions.js';
 import { SignInForm } from '../../components/signin/signin-form';
+import { browserHistory } from 'react-router'
 
 export class SignInPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            signinFormData: {},            
-            info: {},
-            formErrors: {}
-        }
+        this.state = { credentials: { username: '', password: '' } }
+        // this.state = {
+        //     username: '',
+        //     password: ''
+        // }
     }
 
     handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
 
-        let valObj = {};
-        valObj[event.target.name] = event.target.value;
-        this.setState(
-            Object.assign({}, this.state, {
-                signinFormData: Object.assign({}, this.state.signinFormData, valObj)
-            })
-        )
+        const field = event.target.name;
+        const credentials = this.state.credentials;
+        credentials[field] = event.target.value;
+        return this.setState({ credentials: credentials });
+
+        //this.setState({ [event.target.name]: event.target.value });
+
+        // let valObj = {};
+        // valObj[event.target.name] = event.target.value;
+        // this.setState(
+        //     Object.assign({}, this.state, {
+        //         signinFormData: Object.assign({}, this.state.signinFormData, valObj)
+        //     })
+        // )
     }
 
     handleSubmit = (event) => {
-        this.setState(
-            Object.assign({}, this.state, {
-                formErrors: {}
-            })
-        )
+        // this.setState(
+        //     Object.assign({}, this.state, {
+        //         formErrors: {}
+        //     })
+        // )
         event.preventDefault();
-        this.props.onSubmit(this.state.signinFormData);
+        this.props.onSubmit(this.state.credentials);
     }
 
 
     componentWillUpdate(nextProps, nextState) {
-        nextProps.signinData && (nextProps.isPropUpdate === true) ?
-            this.setState(
-                Object.assign({}, this.state, {
-                    formErrors: nextProps.signinData.info
-                })
-            ) : ""
+
+        if (nextProps.token) {
+            //browserHistory.push('/dashboard');
+        }
     }
 
     render() {
@@ -53,7 +58,7 @@ export class SignInPage extends React.Component {
                     <SignInForm
                         submitHandle={this.handleSubmit}
                         handleChange={this.handleChange}
-                        formError={this.props.signinData.info}
+                        credentials={this.state.credentials}                         
                     />
                 </div>
             </div>
@@ -64,7 +69,9 @@ export class SignInPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        signinData: state.signinData
+        errorMessage: state.auth.error,
+        message: state.auth.message,
+        user: state.auth.user
     }
 }
 

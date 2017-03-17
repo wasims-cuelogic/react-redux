@@ -1,36 +1,35 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { selectUser } from "../../actions/index";
+import { connect } from 'react-redux';
+import { DashboardComponent } from '../../components/dashboard/dashboard-component';
 
-class Dashboard extends Component {
+export class Dashboard extends React.Component {
 
-    createListItems() {
-        return this.props.users.map((user) => {
-            return (
-                <a key={user.id}><li onClick={() => this.props.selectUser(user)} >{user.first} {user.last}</li></a>
-            );
-        })
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {}
+        }
     }
+
     render() {
         return (
-            <ul>
-                {this.createListItems()}
-            </ul>
+            <div className="row">
+                <DashboardComponent user={this.props.user} />
+            </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users
+        user: state.auth.user
     }
 }
 
-const matchDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        selectUser: selectUser
-    }, dispatch)
+const mapDispatchToProps = (dispatch) => {
+    return {
+    }
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(Dashboard);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

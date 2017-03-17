@@ -5,10 +5,11 @@ import { signupInfo } from "./signup-reducer";
 import { signinInfo } from "./signin-reducer";
 
 const allReducers = combineReducers({
-    users: UserReducer,
-    activeUser: ActiveUserReducer,
+    // users: UserReducer,
+    // activeUser: ActiveUserReducer,
     signupData: signupInfo,
-    signinData: signinInfo
+    // signinData: signinInfo,
+    auth: signinInfo
 });
 
 export default allReducers
