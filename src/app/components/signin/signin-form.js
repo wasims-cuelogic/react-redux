@@ -8,6 +8,8 @@ export const SignInForm = (props) => {
             {/*{console.log("Props ",props)}      */}
             <form onSubmit={props.submitHandle} id="frm-signin">
                 <h1>Sign In</h1>                
+                
+                {props.errors && <span className="help-block">{props.errors}</span>}
 
                 <div className="form-group">
                     <label className="control-label">Username</label>

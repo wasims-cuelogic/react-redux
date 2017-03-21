@@ -2,20 +2,21 @@ import * as actionTypes from "../constants/actionTypes";
 import axios from 'axios';
 import cookie from 'react-cookie';
 
-export const userSigninRequest = (userData) => {    
+export const userSigninRequest = (userData) => {
 
     return (dispatch, getState) => {
 
         dispatch({
-            type: actionTypes.LOGIN_REQUEST
+            type: actionTypes.UNAUTH_USER
         })
 
         axios.post("http://localhost:3001/api/users/authenticate", userData)
             .then(response => {
                 //console.log("Success ", response.data)
-                cookie.save('token', response.data.id_token, { path: '/' });
-                //sessionStorage.setItem('token', response.data.id_token);
-                dispatch({ type: actionTypes.AUTH_USER, token: response.data.id_token, user:response.data.user });
+                //cookie.save('token', response.data.id_token, { path: '/' });
+                sessionStorage.setItem('token', response.data.id_token);
+                sessionStorage.setItem('user', response.data.user.fname);
+                dispatch({ type: actionTypes.AUTH_USER, token: response.data.id_token, user: response.data.user });
                 // dispatch({
                 //     type: actionTypes.LOGIN_SUCCESS,
                 //     token: response.data.token
@@ -24,7 +25,7 @@ export const userSigninRequest = (userData) => {
             .catch((error) => {
                 //console.log("Error ", JSON.stringify(error.message))
 
-                errorHandler(dispatch, error.response, AUTH_ERROR)
+                errorHandler(dispatch, error.response, actionTypes.AUTH_ERROR)
 
                 // dispatch({
                 //     type: actionTypes.AUTH_ERROR,
@@ -34,13 +35,22 @@ export const userSigninRequest = (userData) => {
     }
 }
 
+export const userLogoutRequest = () => {
+    return (dispatch, getState) => {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
+
+        dispatch({ type: actionTypes.LOG_OUT });
+    }
+}
+
 
 export function errorHandler(dispatch, error, type) {
     let errorMessage = '';
 
     if (error.data.error) {
-        errorMessage = error.data.error;
-    } else if (error.data){
+        errorMessage = error.data.message;
+    } else if (error.data) {
         errorMessage = error.data;
     } else {
         errorMessage = error;

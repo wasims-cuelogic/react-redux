@@ -7,12 +7,13 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
-export const ADD_FLASH_MESSAGE = 'ADD_FLASH_MESSAGE'
-
-
 export const AUTH_USER = 'auth_user',
     UNAUTH_USER = 'unauth_user',
     AUTH_ERROR = 'auth_error',
     FORGOT_PASSWORD_REQUEST = 'forgot_password_request',
     RESET_PASSWORD_REQUEST = 'reset_password_request',
-    PROTECTED_TEST = 'protected_test';
+    PROTECTED_TEST = 'protected_test',
+    LOG_OUT = 'LOG_OUT',
+    ADD_FLASH_MESSAGE = 'ADD_FLASH_MESSAGE',
+    DELETE_FLASH_MESSAGE = 'DELETE_FLASH_MESSAGE',
+    SET_CURRENT_USER = 'SET_CURRENT_USER';   

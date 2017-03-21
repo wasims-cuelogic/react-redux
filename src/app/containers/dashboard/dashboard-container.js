@@ -14,7 +14,7 @@ export class Dashboard extends React.Component {
     render() {
         return (
             <div className="row">
-                <DashboardComponent user={this.props.user} />
+                <DashboardComponent user={this.props.user} userData={sessionStorage.getItem('user')} />
             </div>
         )
     }
@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.auth.user
+        user: state.auth.user        
     }
 }
 

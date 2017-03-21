@@ -17,6 +17,9 @@ export function signinInfo(state = {}, action) {
             return { ...state, error: action.payload, isPropUpdate: true };
         case actionTypes.PROTECTED_TEST:
             return { ...state, content: action.payload };
+        case actionTypes.LOG_OUT:
+            browserHistory.push('/')
+            return { ...state, content: action.payload };
         default:
             return state;
     }

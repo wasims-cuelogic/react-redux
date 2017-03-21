@@ -3,5 +3,18 @@
     "env": {
         "browser": true,
         "node": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "max-len": [
+            1,
+            120,
+            2,
+            {
+                "ignoreComments": true
+            }
+        ]
     }
 }

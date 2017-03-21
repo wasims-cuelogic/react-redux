@@ -1,11 +1,10 @@
-// webpack.config.prod.js  
 const path = require('path')
 const webpack = require('webpack')
 
 var DIST_DIR = path.resolve(__dirname, "dist");
 var SRC_DIR = path.resolve(__dirname, "src");
 
-export default {
+module.exports = {
     devtool: 'source-map',
 
     entry: [
@@ -36,22 +35,12 @@ export default {
     module: {
         loaders: [
             {
-                test: /\.js?$/,
-                loader: 'babel',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.scss?$/,
-                loader: 'style!css!sass',
-                include: path.join(__dirname, 'src', 'styles')
-            },
-            {
-                test: /\.png$/,
-                loader: 'file'
-            },
-            {
-                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: 'file'
+                test: /\.js?/,
+                include: SRC_DIR,
+                loader: "babel-loader",
+                query: {
+                    presets: ["react", "es2015", "stage-2"]
+                }
             }
         ]
     }

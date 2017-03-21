@@ -52,13 +52,21 @@ export class SignInPage extends React.Component {
     }
 
     render() {
+
+        const { errors } = this.props;
+
+        if (sessionStorage.token) {
+            browserHistory.push('/dashboard');
+            return;
+        }
         return (
             <div className="row">
                 <div className="col-md-6 col-md-offset-2">
                     <SignInForm
                         submitHandle={this.handleSubmit}
                         handleChange={this.handleChange}
-                        credentials={this.state.credentials}                         
+                        credentials={this.state.credentials}
+                        errors={errors}
                     />
                 </div>
             </div>
@@ -69,9 +77,9 @@ export class SignInPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        errorMessage: state.auth.error,
         message: state.auth.message,
-        user: state.auth.user
+        user: state.auth.user,
+        errors: state.auth.error
     }
 }
 

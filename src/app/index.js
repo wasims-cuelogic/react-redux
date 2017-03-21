@@ -14,6 +14,12 @@ import SignUp from "./containers/signup/signup-page";
 import SignIn from "./containers/signin/signin-page";
 import DashboardComponent from "./containers/dashboard/dashboard-container";
 import RequireAuth from "./components/auth/require-auth"
+import createLogger from 'redux-logger';
+
+const logger = createLogger({
+    collapsed: true,
+    stateTransformer: state => state.toJS()
+});
 
 // const initialState = Immutable.Map({
 //     signupData: {
@@ -46,7 +52,8 @@ const store = createStore(
     compose(
         applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f
-    )
+    ),
+    logger
 );
 
 
@@ -58,13 +65,13 @@ var routes = (
             <Route path={"home"} component={Home} />
             <Route path={"signup"} component={SignUp} />
             <Route path={"signin"} component={SignIn} />
-            <Route path={"dashboard"} component={DashboardComponent} />
+            <Route path={"dashboard"} component={DashboardComponent} onEnter={requireAuth} />
         </Route>
     </Router>
 );
 
-function requireAuth(nextState, replace) {    
-    if (!sessionStorage.session) {
+function requireAuth(nextState, replace) {
+    if (!sessionStorage.token) {
         replace({
             pathname: '/signin',
             state: { nextPathname: nextState.location.pathname }

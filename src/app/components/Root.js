@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { Header } from "./Header";
+import Header from "./Header";
+import FlashMessagesList from "./flash/FlashMessagesList";
 
 export class Root extends React.Component {
     render() {
@@ -13,6 +13,7 @@ export class Root extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
+                        {/*<FlashMessagesList />*/}
                         {this.props.children}
                     </div>
                 </div>
