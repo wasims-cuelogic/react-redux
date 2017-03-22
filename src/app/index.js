@@ -12,6 +12,7 @@ import { Home } from "./components/Home";
 import { User } from "./components/User";
 import SignUp from "./containers/signup/signup-page";
 import SignIn from "./containers/signin/signin-page";
+import Counter from "./containers/counter-container";
 import DashboardComponent from "./containers/dashboard/dashboard-container";
 import RequireAuth from "./components/auth/require-auth"
 import createLogger from 'redux-logger';
@@ -65,6 +66,7 @@ var routes = (
             <Route path={"home"} component={Home} />
             <Route path={"signup"} component={SignUp} />
             <Route path={"signin"} component={SignIn} />
+            <Route path={"counter"} component={Counter} />
             <Route path={"dashboard"} component={DashboardComponent} onEnter={requireAuth} />
         </Route>
     </Router>
