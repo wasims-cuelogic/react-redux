@@ -12,3 +12,8 @@ https://www.davidmeents.com/blog/category/development/javascript/
 https://auth0.com/blog/secure-your-react-and-redux-app-with-jwt-authentication/
 
 https://blog.hellojs.org/setting-up-your-react-es6-development-environment-with-webpack-express-and-babel-e2a53994ade#.k1ny6pit7
+
+
+#e2e testing steps
+
+https://www.syncano.io/blog/testing-syncano/
